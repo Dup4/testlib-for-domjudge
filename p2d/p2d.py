@@ -195,8 +195,8 @@ def main(args):
     probid = 'PROB1'
     color = '#000000'
     samples = ['01']
-    package_dir = args.package.strip('/')
-    output_file = args.package.strip('/')
+    package_dir = args.package.rstrip('/')
+    output_file = args.package.rstrip('/')
     if args.code: probid = args.code
     if args.color: color = args.color
     if args.sample: samples = [args.sample]
@@ -211,6 +211,9 @@ def main(args):
         if output_file.endswith('/'): output_file = output_file + package_dir.split('/')[-1]
         if output_file.endswith('.zip'): output_file = output_file[:-4]
         if output_file.startswith('./'): output_file = output_file[2:]
+
+    package_dir = os.path.join('/', package_dir)
+    output_file = os.path.join('/', output_file)
 
     start(package_dir, output_dir, output_file)
 
