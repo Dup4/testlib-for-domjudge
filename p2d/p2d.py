@@ -13,7 +13,6 @@ from time import strftime, localtime, time
 config = {}
 END_OF_SUBPROCESS = '=' * 50
 
-
 def ensure_dir(s):
     if not os.path.exists(s):
         os.makedirs(s)
@@ -184,6 +183,7 @@ def main(args):
             solution, result = get_solution(desc)
             src = '{}/solutions/{}'.format(package_dir, solution)
             dst = '{}/submissions/{}/{}'.format(output_dir, result, solution)
+            ensure_dir('{}/submissions/{}'.format(output_dir, result))
             copyfile(src, dst)
             logger.info('- {} (Expected Result: {})'.format(solution, result))
         logger.info(END_OF_SUBPROCESS)
