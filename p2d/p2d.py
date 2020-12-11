@@ -31,7 +31,8 @@ def main(args):
         logger.info('Package directory: {}'.format(package_dir))
         logger.info('Temp directory: {}'.format(output_dir))
         logger.info('Output file: {}.zip'.format(output_file))
-        input("Press enter to continue...")
+        if args.noconfirm != 1:
+            input("Press enter to continue...")
         logger.info(END_OF_SUBPROCESS)
 
     def parse_problem():
@@ -265,6 +266,7 @@ parser.add_argument('--space_change_sensitive', action='store_true', help='space
 parser.add_argument('--float_relative_tolerance', type=str, help='float_relative_tolerance flag')
 parser.add_argument('--float_absolute_tolerance', type=str, help='float_absolute_tolerance flag')
 parser.add_argument('--float_tolerance', type=str, help='float_tolerance flag')
+parser.add_argument('--noconfirm', type=int, help='noconfirm Defaults to 0')
 args = parser.parse_args()
 
 main(args)
